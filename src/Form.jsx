@@ -1,7 +1,6 @@
 import { useState } from "react";
 import './styleform.css'
 export default function FormInsert() {
-    // Declare state variables for each field
     const [linkP, setLinkP] = useState("");
     const [titre, setTitre] = useState("");
     const [soustitre, setSoustitre] = useState("");
@@ -10,10 +9,19 @@ export default function FormInsert() {
     const [img2, setImg2] = useState("");
     const [porstontage, setPorstontage] = useState("");
 
-    // Handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+    // delete state
+    const clearInputs = () => {
+      setLinkP("");
+      setTitre("");
+      setSoustitre("");
+      setDesc("");
+      setImg1("");
+      setImg2("");
+      setPorstontage("");
+  };
+    
+        const handleDownload = (e) => {
+          e.preventDefault();
         // Create the updated HTML string
         const updatedHtml = `
         <!DOCTYPE html>
@@ -418,73 +426,118 @@ export default function FormInsert() {
     };
 
     return (
-        <div>
-            <h1>Form des Produit</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="1">Link de Produits :</label>
-                <input
-                    type="text"
-                    id="1"
-                    value={linkP}
-                    placeholder="https://www.example.com"
-                    onChange={(e) => setLinkP(e.target.value)}
-                />
-
-                <label htmlFor="2">Titre de Produits :</label>
-                <input
-                    type="text"
-                    id="2"
-                    value={titre}
-                    placeholder="Titre"
-                    onChange={(e) => setTitre(e.target.value)}
-                />
-
-                <label htmlFor="3">Sous-titre :</label>
-                <input
-                    type="text"
-                    id="3"
-                    value={soustitre}
-                    placeholder="Sous-titre"
-                    onChange={(e) => setSoustitre(e.target.value)}
-                />
-
-                <label htmlFor="4">Description :</label>
-                <input
-                    type="text"
-                    id="4"
-                    value={desc}
-                    placeholder="À propos du produit"
-                    onChange={(e) => setDesc(e.target.value)}
-                />
-
-                <label htmlFor="5">Link de Image :</label>
-                <input
-                    type="text"
-                    id="5"
-                    value={img1}
-                    placeholder="https://www.example.com"
-                    onChange={(e) => setImg1(e.target.value)}
-                />
-
-                <label htmlFor="6">Link de GIF/Image :</label>
-                <input
-                    type="text"
-                    id="6"
-                    value={img2}
-                    placeholder="https://www.example.com"
-                    onChange={(e) => setImg2(e.target.value)}
-                />
-
-                <label htmlFor="7">Pourcentage :</label>
-                <input
-                    type="text"
-                    id="7"
-                    value={porstontage}
-                    placeholder="Pourcentage"
-                    onChange={(e) => setPorstontage(e.target.value)}
-                />
-                <button type="submit">Generate HTML and Download</button>
-            </form>
-        </div>
+      <div>
+        <h1>Form des Produits</h1>
+        <form>
+          <label htmlFor="1">Link de Produits :</label>
+          <input
+            type="text"
+            id="1"
+            value={linkP}
+            placeholder="https://www.example.com"
+            onChange={(e) => setLinkP(e.target.value)}
+          />
+    
+          <label htmlFor="2">Titre de Produits :</label>
+          <input
+            type="text"
+            id="2"
+            value={titre}
+            placeholder="Titre"
+            onChange={(e) => setTitre(e.target.value)}
+          />
+    
+          <label htmlFor="3">Sous-titre :</label>
+          <input
+            type="text"
+            id="3"
+            value={soustitre}
+            placeholder="Sous-titre"
+            onChange={(e) => setSoustitre(e.target.value)}
+          />
+    
+          <label htmlFor="4">Description :</label>
+          <input
+            type="text"
+            id="4"
+            value={desc}
+            placeholder="À propos du produit"
+            onChange={(e) => setDesc(e.target.value)}
+          />
+    
+          <label htmlFor="5">Link de Image :</label>
+          <input
+            type="text"
+            id="5"
+            value={img1}
+            placeholder="https://www.example.com"
+            onChange={(e) => setImg1(e.target.value)}
+          />
+    
+          <label htmlFor="6">Link de GIF/Image :</label>
+          <input
+            type="text"
+            id="6"
+            value={img2}
+            placeholder="https://www.example.com"
+            onChange={(e) => setImg2(e.target.value)}
+          />
+    
+          <label htmlFor="7">Pourcentage :</label>
+          <input
+            type="text"
+            id="7"
+            value={porstontage}
+            placeholder="Pourcentage"
+            onChange={(e) => setPorstontage(e.target.value)}
+          />
+          <div class="button-container">
+          <button type="submit" className="download-button" onClick={handleDownload}>
+            <div className="docs">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="css-i6dzq1"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              HTML CODE
+            </div>
+            <div className="download">
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="css-i6dzq1"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </div>
+          </button>
+          <button className="delete-button" onClick={clearInputs}>
+            <svg className="delete-svgIcon" viewBox="0 0 448 512">
+              <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+            </svg>
+          </button>
+          </div>
+        </form>
+      </div>
     );
 }
